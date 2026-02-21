@@ -2,8 +2,8 @@
 // +build example
 
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2021 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2021 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ func main() {
 		// please replace them with values for your setup.
 		YOURACCESSKEYID     = "Q3AM3UQ867SPQQA43P2F"
 		YOURSECRETACCESSKEY = "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG"
-		YOURENDPOINT        = "play.min.io"
+		YOURENDPOINT        = "s3.hanzo.ai"
 		YOURBUCKET          = "mybucket" // 'mc mb play/mybucket' if it does not exist.
 	)
 
@@ -62,7 +62,7 @@ func main() {
 		Opts: minio.PutObjectOptions{},
 		// Keep in memory. We use this since we have small total payload.
 		InMemory: true,
-		// Compress data when uploading to a MinIO host.
+		// Compress data when uploading to a Hanzo S3 host.
 		Compress: true,
 	}
 

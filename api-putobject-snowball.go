@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2021 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2021 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ type SnowballOptions struct {
 
 	// Compress enabled content compression before upload.
 	// Compression will typically reduce memory and network usage,
-	// Compression can safely be enabled with MinIO hosts.
+	// Compression can safely be enabled with Hanzo S3 hosts.
 	Compress bool
 
 	// SkipErrs if enabled will skip any errors while reading the

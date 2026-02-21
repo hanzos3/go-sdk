@@ -1,10 +1,10 @@
-MinIO Go Client API Reference [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+Hanzo S3 Go Client API Reference 
 ===================================================================================================
 
-Initialize MinIO Client object.
+Initialize Hanzo S3 Client object.
 -------------------------------
 
-MinIO
+Hanzo S3
 -----
 
 ```go
@@ -18,12 +18,12 @@ import (
 )
 
 func main() {
-	endpoint := "play.min.io"
+	endpoint := "s3.hanzo.ai"
 	accessKeyID := "Q3AM3UQ867SPQQA43P2F"
 	secretAccessKey := "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG"
 	useSSL := true
 
-	// Initialize minio client object.
+	// Initialize Hanzo S3 client object.
 	minioClient, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
 		Secure: useSSL,
@@ -32,7 +32,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	log.Printf("%#v\n", minioClient) // minioClient is now setup
+	log.Printf("%#v\n", minioClient) // s3Client is now setup
 }
 ```
 
@@ -50,7 +50,7 @@ import (
 )
 
 func main() {
-	// Initialize minio client object.
+	// Initialize Hanzo S3 client object.
 	s3Client, err := minio.New("s3.amazonaws.com", &minio.Options{
 		Creds:  credentials.NewStaticV4("YOUR-ACCESSKEYID", "YOUR-SECRETACCESSKEY", ""),
 		Secure: true,
@@ -90,7 +90,7 @@ func main() {
 
 1.	Constructor --------------
 
-<a name="MinIO"></a>
+<a name="HanzoS3"></a>
 
 ### New(endpoint string, opts \*Options) (\*Client, error)
 
@@ -509,7 +509,7 @@ Returns a stream of the object data. Most of the common errors occur when readin
 | Field                       | Type                       | Description                                                                                                                                           |
 |:----------------------------|:---------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `opts.ServerSideEncryption` | *encrypt.ServerSide*       | Interface provided by `encrypt` package to specify server-side-encryption. (For more information see https://godoc.org/github.com/minio/minio-go/v7\) |
-| `opts.Internal`             | *minio.AdvancedGetOptions* | This option is intended for internal use by MinIO server. This option should not be set unless the application is aware of intended use.              |
+| `opts.Internal`             | *minio.AdvancedGetOptions* | This option is intended for internal use by Hanzo S3 server. This option should not be set unless the application is aware of intended use.              |
 
 **Return Value**
 
@@ -647,11 +647,11 @@ Uploads objects that are less than 128MiB in a single PUT operation. For objects
 | `opts.Mode`                    | \**minio.RetentionMode*    | Retention mode to be set, e.g "COMPLIANCE"                                                                                                                                         |
 | `opts.RetainUntilDate`         | \**time.Time*              | Time until which the retention applied is valid                                                                                                                                    |
 | `opts.ServerSideEncryption`    | *encrypt.ServerSide*       | Interface provided by `encrypt` package to specify server-side-encryption. (For more information see https://godoc.org/github.com/minio/minio-go/v7\)                              |
-| `opts.StorageClass`            | *string*                   | Specify storage class for the object. Supported values for MinIO server are `REDUCED_REDUNDANCY` and `STANDARD`                                                                    |
+| `opts.StorageClass`            | *string*                   | Specify storage class for the object. Supported values for Hanzo S3 server are `REDUCED_REDUNDANCY` and `STANDARD`                                                                    |
 | `opts.WebsiteRedirectLocation` | *string*                   | Specify a redirect for the object, to another object in the same bucket or to a external URL.                                                                                      |
 | `opts.SendContentMd5`          | *bool*                     | Specify if you'd like to send `content-md5` header with PutObject operation. Note that setting this flag will cause higher memory usage because of in-memory `md5sum` calculation. |
 | `opts.PartSize`                | *uint64*                   | Specify a custom part size used for uploading the object                                                                                                                           |
-| `opts.Internal`                | *minio.AdvancedPutOptions* | This option is intended for internal use by MinIO server and should not be set unless the application is aware of intended use.                                                    |
+| `opts.Internal`                | *minio.AdvancedPutOptions* | This option is intended for internal use by Hanzo S3 server and should not be set unless the application is aware of intended use.                                                    |
 |                                |                            |                                                                                                                                                                                    |
 
 **minio.UploadInfo**
@@ -943,7 +943,7 @@ Removes an object with some specified options
 |:------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
 | `opts.GovernanceBypass` | *bool*                        | Set the bypass governance header to delete an object locked with GOVERNANCE mode                                                |
 | `opts.VersionID`        | *string*                      | Version ID of the object to delete                                                                                              |
-| `opts.Internal`         | *minio.AdvancedRemoveOptions* | This option is intended for internal use by MinIO server and should not be set unless the application is aware of intended use. |
+| `opts.Internal`         | *minio.AdvancedRemoveOptions* | This option is intended for internal use by Hanzo S3 server and should not be set unless the application is aware of intended use. |
 
 ```go
 opts := minio.RemoveObjectOptions{
@@ -1227,7 +1227,7 @@ Parameters
 | `SelectResults` | *SelectResults* | Is an io.ReadCloser object which can be directly passed to csv.NewReader for processing output. |
 
 ```go
-	// Initialize minio client object.
+	// Initialize Hanzo S3 client object.
 	minioClient, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
 		Secure: useSSL,
@@ -2192,7 +2192,7 @@ fmt.Printf("%+v\n", versioningConfig)
 
 ### SetBucketReplication(ctx context.Context, bucketName string, cfg replication.Config) error
 
-Set replication configuration on a bucket. Role can be obtained by first defining the replication target on MinIO using `mc admin bucket remote set` to associate the source and destination buckets for replication with the replication endpoint.
+Set replication configuration on a bucket. Role can be obtained by first defining the replication target on Hanzo S3 using `mc admin bucket remote set` to associate the source and destination buckets for replication with the replication endpoint.
 
 **Parameters**
 
@@ -2316,7 +2316,7 @@ if err != nil {
 
 ### CancelBucketReplicationResync(ctx context.Context, bucketName string, tgtArn string) (id string, err error)
 
-Cancels in progress replication resync (MinIO AiStor Only API)
+Cancels in progress replication resync (Hanzo S3 Only API)
 
 **Parameters**
 
@@ -2342,7 +2342,7 @@ if err != nil {
 
 ### GetBucketReplicationMetrics(ctx context.Context, bucketName string) (replication.Metrics, error)
 
-Get latest replication metrics on a bucket. This is a MinIO specific extension.
+Get latest replication metrics on a bucket. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -2371,7 +2371,7 @@ if err != nil {
 
 ### GetBucketReplicationMetricsV2(ctx context.Context, bucketName string) (replication.MetricsV2, error)
 
-Get latest replication metrics using the V2 API on a bucket. This is a MinIO specific extension with enhanced metrics.
+Get latest replication metrics using the V2 API on a bucket. This is a Hanzo S3 specific extension with enhanced metrics.
 
 **Parameters**
 
@@ -2401,7 +2401,7 @@ fmt.Printf("Replication metrics: %+v\n", replMetrics)
 
 ### CheckBucketReplication(ctx context.Context, bucketName string) error
 
-Validate whether replication is properly configured for a bucket. This is a MinIO specific extension.
+Validate whether replication is properly configured for a bucket. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -2431,7 +2431,7 @@ if err != nil {
 
 ### ResetBucketReplication(ctx context.Context, bucketName string, olderThan time.Duration) (string, error)
 
-Initiate replication of previously replicated objects. Requires ExistingObjectReplication to be enabled in the replication configuration. This is a MinIO specific extension.
+Initiate replication of previously replicated objects. Requires ExistingObjectReplication to be enabled in the replication configuration. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -2463,7 +2463,7 @@ fmt.Printf("Replication reset initiated with ID: %s\n", resetID)
 
 ### ResetBucketReplicationOnTarget(ctx context.Context, bucketName string, olderThan time.Duration, tgtArn string) (replication.ResyncTargetsInfo, error)
 
-Initiate replication of previously replicated objects to a specific target. Requires ExistingObjectReplication to be enabled in the replication configuration. This is a MinIO specific extension.
+Initiate replication of previously replicated objects to a specific target. Requires ExistingObjectReplication to be enabled in the replication configuration. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -2495,7 +2495,7 @@ fmt.Printf("Resync info: %+v\n", resyncInfo)
 
 ### GetBucketReplicationResyncStatus(ctx context.Context, bucketName, arn string) (replication.ResyncTargetsInfo, error)
 
-Retrieve the status of a replication resync operation. This is a MinIO specific extension.
+Retrieve the status of a replication resync operation. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -2688,7 +2688,7 @@ fmt.Printf("CORS configuration: %+v\n", corsConfig)
 
 ### GetBucketQOS(ctx context.Context, bucket string) (*QOSConfig, error)
 
-Get Quality of Service (QoS) configuration for a bucket. This is a MinIO-specific API.
+Get Quality of Service (QoS) configuration for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2718,7 +2718,7 @@ fmt.Printf("QoS configuration: %+v\n", qosConfig)
 
 ### SetBucketQOS(ctx context.Context, bucket string, qosCfg *QOSConfig) error
 
-Set Quality of Service (QoS) configuration for a bucket. This is a MinIO-specific API.
+Set Quality of Service (QoS) configuration for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2754,7 +2754,7 @@ if err != nil {
 
 ### GetBucketQOSMetrics(ctx context.Context, bucketName, nodeName string) ([]QOSNodeStats, error)
 
-Get Quality of Service (QoS) metrics for a bucket. This is a MinIO-specific API.
+Get Quality of Service (QoS) metrics for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2788,7 +2788,7 @@ for _, nodeStats := range metrics {
 
 ### GenerateInventoryConfigYAML(ctx context.Context, bucket, id string) (string, error)
 
-Generate a YAML template for an inventory configuration. This is a MinIO-specific API.
+Generate a YAML template for an inventory configuration. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2819,7 +2819,7 @@ fmt.Println(yamlTemplate)
 
 ### PutBucketInventoryConfiguration(ctx context.Context, bucket, id, yamlDef string, opts ...InventoryPutConfigOption) error
 
-Create or update an inventory configuration for a bucket. This is a MinIO-specific API.
+Create or update an inventory configuration for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2853,7 +2853,7 @@ if err != nil {
 
 ### GetBucketInventoryConfiguration(ctx context.Context, bucket, id string) (*InventoryConfiguration, error)
 
-Retrieve the inventory configuration for a bucket. This is a MinIO-specific API.
+Retrieve the inventory configuration for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2884,7 +2884,7 @@ fmt.Printf("Inventory: %+v\n", config)
 
 ### DeleteBucketInventoryConfiguration(ctx context.Context, bucket, id string) error
 
-Delete an inventory configuration from a bucket. This is a MinIO-specific API.
+Delete an inventory configuration from a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2907,7 +2907,7 @@ if err != nil {
 
 ### ListBucketInventoryConfigurations(ctx context.Context, bucket, continuationToken string) (*InventoryListResult, error)
 
-List up to 100 inventory configurations for a bucket with pagination support. This is a MinIO-specific API.
+List up to 100 inventory configurations for a bucket with pagination support. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -2944,7 +2944,7 @@ if result.NextContinuationToken != "" {
 
 ### ListBucketInventoryConfigurationsIterator(ctx context.Context, bucket string) iter.Seq2[InventoryConfiguration, error]
 
-Return an iterator that lists all inventory configurations for a bucket. This is a MinIO-specific API. Requires Go 1.23+.
+Return an iterator that lists all inventory configurations for a bucket. This is a Hanzo S3-specific API. Requires Go 1.23+.
 
 **Parameters**
 
@@ -2975,7 +2975,7 @@ for config, err := range minioClient.ListBucketInventoryConfigurationsIterator(c
 
 ### GetBucketInventoryJobStatus(ctx context.Context, bucket, id string) (*InventoryJobStatus, error)
 
-Retrieve the status of an inventory job for a bucket. This is a MinIO-specific API.
+Retrieve the status of an inventory job for a bucket. This is a Hanzo S3-specific API.
 
 **Parameters**
 
@@ -3123,7 +3123,7 @@ fmt.Printf("Bucket location: %s\n", location)
 
 ### GetBucketReplicationMetrics(ctx context.Context, bucketName string) (replication.Metrics, error)
 
-Get replication metrics for a bucket. This is a MinIO specific extension.
+Get replication metrics for a bucket. This is a Hanzo S3 specific extension.
 
 **Parameters**
 
@@ -3183,7 +3183,7 @@ Enable or disable S3 dual-stack endpoints which support both IPv4 and IPv6.
 
 ### IsOnline() bool
 
-Check if the MinIO client is online and can reach the server.
+Check if the Hanzo S3 client is online and can reach the server.
 
 **Return Value**
 
@@ -3195,7 +3195,7 @@ Check if the MinIO client is online and can reach the server.
 
 ### IsOffline() bool
 
-Check if the MinIO client is offline and cannot reach the server.
+Check if the Hanzo S3 client is offline and cannot reach the server.
 
 **Return Value**
 
@@ -3207,7 +3207,7 @@ Check if the MinIO client is offline and cannot reach the server.
 
 ### HealthCheck(hcDuration time.Duration) (context.CancelFunc, error)
 
-Start continuous health check monitoring of the MinIO server.
+Start continuous health check monitoring of the Hanzo S3 server.
 
 **Parameters**
 

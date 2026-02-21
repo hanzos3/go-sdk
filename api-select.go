@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * (C) 2018-2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * (C) 2018-2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ const (
 	SelectCompressionGZIP SelectCompressionType = "GZIP"
 	SelectCompressionBZIP SelectCompressionType = "BZIP2"
 
-	// Non-standard compression schemes, supported by MinIO hosts:
+	// Non-standard compression schemes, supported by Hanzo S3 hosts:
 
 	SelectCompressionZSTD   SelectCompressionType = "ZSTD"   // Zstandard compression.
 	SelectCompressionLZ4    SelectCompressionType = "LZ4"    // LZ4 Stream

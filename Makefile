@@ -22,7 +22,7 @@ test:
 examples:
 	@echo "Building s3 examples"
 	@cd ./examples/s3 && $(foreach v,$(wildcard examples/s3/*.go),go build -mod=mod -o ${TMPDIR}/$(basename $(v)) $(notdir $(v)) || exit 1;)
-	@echo "Building minio examples"
+	@echo "Building Hanzo S3 examples"
 	@cd ./examples/minio && $(foreach v,$(wildcard examples/minio/*.go),go build -mod=mod -o ${TMPDIR}/$(basename $(v)) $(notdir $(v)) || exit 1;)
 
 functional-test:

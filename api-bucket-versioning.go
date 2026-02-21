@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2020 Hanzo AI, Inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -86,7 +86,7 @@ type BucketVersioningConfiguration struct {
 	XMLName   xml.Name `xml:"VersioningConfiguration"`
 	Status    string   `xml:"Status"`
 	MFADelete string   `xml:"MfaDelete,omitempty"`
-	// MinIO extension - allows selective, prefix-level versioning exclusion.
+	// Hanzo S3 extension - allows selective, prefix-level versioning exclusion.
 	// Requires versioning to be enabled
 	ExcludedPrefixes []ExcludedPrefix `xml:",omitempty"`
 	ExcludeFolders   bool             `xml:",omitempty"`

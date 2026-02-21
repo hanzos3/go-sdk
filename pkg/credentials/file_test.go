@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2017 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2017 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -167,7 +167,7 @@ func TestFileMinioClient(t *testing.T) {
 	}
 
 	os.Clearenv()
-	t.Setenv("MINIO_ALIAS", "play")
+	t.Setenv("MINIO_ALIAS", "hanzo")
 
 	creds = NewFileMinioClient("config.json.sample", "")
 	credValues, err = creds.GetWithContext(defaultCredContext)
@@ -175,35 +175,35 @@ func TestFileMinioClient(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if credValues.AccessKeyID != "Q3AM3UQ867SPQQA43P2F" {
-		t.Errorf("Expected 'Q3AM3UQ867SPQQA43P2F', got %s'", credValues.AccessKeyID)
+	if credValues.AccessKeyID != "hanzo-access-key" {
+		t.Errorf("Expected 'hanzo-access-key', got %s'", credValues.AccessKeyID)
 	}
-	if credValues.SecretAccessKey != "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" {
-		t.Errorf("Expected 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG', got %s'", credValues.SecretAccessKey)
+	if credValues.SecretAccessKey != "hanzo-secret-key" {
+		t.Errorf("Expected 'hanzo-secret-key', got %s'", credValues.SecretAccessKey)
 	}
-	if credValues.SignerType != SignatureV2 {
-		t.Errorf("Expected 'S3v2', got %s'", credValues.SignerType)
+	if credValues.SignerType != SignatureV4 {
+		t.Errorf("Expected 'S3v4', got %s'", credValues.SignerType)
 	}
 
 	os.Clearenv()
 
-	creds = NewFileMinioClient("config.json.sample", "play")
+	creds = NewFileMinioClient("config.json.sample", "hanzo")
 	credValues, err = creds.GetWithContext(defaultCredContext)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if credValues.AccessKeyID != "Q3AM3UQ867SPQQA43P2F" {
-		t.Errorf("Expected 'Q3AM3UQ867SPQQA43P2F', got %s'", credValues.AccessKeyID)
+	if credValues.AccessKeyID != "hanzo-access-key" {
+		t.Errorf("Expected 'hanzo-access-key', got %s'", credValues.AccessKeyID)
 	}
-	if credValues.SecretAccessKey != "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" {
-		t.Errorf("Expected 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG', got %s'", credValues.SecretAccessKey)
+	if credValues.SecretAccessKey != "hanzo-secret-key" {
+		t.Errorf("Expected 'hanzo-secret-key', got %s'", credValues.SecretAccessKey)
 	}
-	if credValues.SignerType != SignatureV2 {
-		t.Errorf("Expected 'S3v2', got %s'", credValues.SignerType)
+	if credValues.SignerType != SignatureV4 {
+		t.Errorf("Expected 'S3v4', got %s'", credValues.SignerType)
 	}
 
-	creds = NewFileMinioClient("non-existent.json", "play")
+	creds = NewFileMinioClient("non-existent.json", "hanzo")
 	_, err = creds.GetWithContext(defaultCredContext)
 	if !os.IsNotExist(err) {
 		t.Errorf("Expected open non-existent.json: no such file or directory, got %s", err)

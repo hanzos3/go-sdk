@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2024 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2024 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -167,9 +167,9 @@ const (
 // User Agent should always following the below style.
 // Please open an issue to discuss any new changes here.
 //
-//	MinIO (OS; ARCH) LIB/VER APP/VER
+//	Hanzo-S3 (OS; ARCH) LIB/VER APP/VER
 const (
-	libraryUserAgentPrefix = "MinIO (" + runtime.GOOS + "; " + runtime.GOARCH + ") "
+	libraryUserAgentPrefix = "Hanzo-S3 (" + runtime.GOOS + "; " + runtime.GOARCH + ") "
 	libraryUserAgent       = libraryUserAgentPrefix + libraryName + "/" + libraryVersion
 )
 

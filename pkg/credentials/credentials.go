@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2017 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2017 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ type CredContext struct {
 	// request is to be made to fetch the credentials.
 	Client *http.Client
 
-	// Endpoint specifies the MinIO endpoint that will be used if no
+	// Endpoint specifies the Hanzo S3 endpoint that will be used if no
 	// explicit endpoint is provided.
 	Endpoint string
 }

@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -179,11 +179,11 @@ type ObjectInfo struct {
 	Metadata http.Header `json:"metadata" xml:"-"`
 
 	// x-amz-meta-* headers stripped "x-amz-meta-" prefix containing the first value.
-	// Only returned by MinIO servers.
+	// Only returned by Hanzo S3 servers.
 	UserMetadata StringMap `json:"userMetadata,omitempty"`
 
 	// x-amz-tagging values in their k/v values.
-	// Only returned by MinIO servers.
+	// Only returned by Hanzo S3 servers.
 	UserTags URLMap `json:"userTags,omitempty" xml:"UserTags"`
 
 	// x-amz-tagging-count value

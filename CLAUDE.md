@@ -9,7 +9,7 @@ Commands
 ### Testing
 
 ```bash
-# Run all tests with race detection (requires MinIO server at localhost:9000)
+# Run all tests with race detection (requires Hanzo S3 server at localhost:9000)
 SERVER_ENDPOINT=localhost:9000 ACCESS_KEY=minioadmin SECRET_KEY=minioadmin ENABLE_HTTPS=1 MINT_MODE=full go test -race -v ./...
 
 # Run tests without race detection
@@ -56,7 +56,7 @@ Architecture
 
 ### Core Client Structure
 
-The MinIO Go SDK is organized around a central `Client` struct (api.go:52) that implements Amazon S3 compatible methods. Key architectural patterns:
+The Hanzo S3 Go SDK is organized around a central `Client` struct (api.go:52) that implements Amazon S3 compatible methods. Key architectural patterns:
 
 1.	**Modular API Organization**: API methods are split into logical files:
 
@@ -69,7 +69,7 @@ The MinIO Go SDK is organized around a central `Client` struct (api.go:52) that 
 2.	**Credential Management**: The `pkg/credentials/` package provides various credential providers:
 
 	-	Static credentials
-	-	Environment variables (AWS/MinIO)
+	-	Environment variables (AWS/Hanzo S3)
 	-	IAM roles
 	-	STS (Security Token Service) variants
 	-	File-based credentials
@@ -86,7 +86,7 @@ The MinIO Go SDK is organized around a central `Client` struct (api.go:52) that 
 	-	Retry logic with configurable max retries
 	-	Health status monitoring
 	-	Tracing support via httptrace
-	-	Bucket location caching (`bucketLocCache`\)
+	-	Bucket location caching (`bucketLocCache`)
 	-	Session caching for credentials
 
 5.	**Helper Packages**:
@@ -102,8 +102,8 @@ The MinIO Go SDK is organized around a central `Client` struct (api.go:52) that 
 
 ### Testing Strategy
 
--	Unit tests alongside implementation files (`*_test.go`\)
--	Comprehensive functional tests in `functional_tests.go` requiring a live MinIO server
+-	Unit tests alongside implementation files (`*_test.go`)
+-	Comprehensive functional tests in `functional_tests.go` requiring a live Hanzo S3 server
 -	Example programs in `examples/` directory demonstrating API usage
 -	Build tag `//go:build mint` for integration tests
 
@@ -118,7 +118,7 @@ Important Patterns
 ------------------
 
 1.	**Context Usage**: All API methods accept `context.Context` for cancellation and timeout control
-2.	**Options Pattern**: Methods use Options structs for optional parameters (e.g., `PutObjectOptions`, `GetObjectOptions`\)
+2.	**Options Pattern**: Methods use Options structs for optional parameters (e.g., `PutObjectOptions`, `GetObjectOptions`)
 3.	**Streaming Support**: Large file operations use io.Reader/Writer interfaces for memory efficiency
 4.	**Bucket Lookup Types**: Supports both path-style and virtual-host-style S3 URLs
 5.	**MD5/SHA256 Hashing**: Configurable hash functions for integrity checks via `md5Hasher` and `sha256Hasher`

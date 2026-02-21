@@ -1,8 +1,8 @@
 //go:build mint
 
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -268,9 +268,9 @@ func isRunOnFail() bool {
 
 func init() {
 	// If server endpoint is not set, all tests default to
-	// using https://play.min.io
+	// using https://s3.hanzo.ai
 	if os.Getenv(serverEndpoint) == "" {
-		os.Setenv(serverEndpoint, "play.min.io")
+		os.Setenv(serverEndpoint, "s3.hanzo.ai")
 		os.Setenv(accessKey, "Q3AM3UQ867SPQQA43P2F")
 		os.Setenv(secretKey, "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG")
 		os.Setenv(enableHTTPS, "1")
@@ -394,14 +394,14 @@ func getFuncNameLoc(caller int) string {
 }
 
 type ClientConfig struct {
-	// MinIO client configuration
+	// Hanzo S3 client configuration
 	TraceOn         bool // Turn on tracing of HTTP requests and responses to stderr
 	CredsV2         bool // Use V2 credentials if true, otherwise use v4
 	TrailingHeaders bool // Send trailing headers in requests
 }
 
 func NewClient(config ClientConfig) (*minio.Client, error) {
-	// Instantiate new MinIO client
+	// Instantiate new Hanzo S3 client
 	var creds *credentials.Credentials
 	if config.CredsV2 {
 		creds = credentials.NewStaticV2(os.Getenv(accessKey), os.Getenv(secretKey), "")
@@ -424,7 +424,7 @@ func NewClient(config ClientConfig) (*minio.Client, error) {
 	}
 
 	// Set user agent.
-	client.SetAppInfo("MinIO-go-FunctionalTest", appVersion)
+	client.SetAppInfo("HanzoS3-go-FunctionalTest", appVersion)
 
 	return client, nil
 }
@@ -445,7 +445,7 @@ func testMakeBucketError() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client creation failed", err)
 		return
 	}
 
@@ -486,7 +486,7 @@ func testMetadataSizeLimit() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client creation failed", err)
 		return
 	}
 
@@ -546,7 +546,7 @@ func testMakeBucketRegions() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client creation failed", err)
 		return
 	}
 
@@ -598,7 +598,7 @@ func testPutObjectReadAt() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -682,7 +682,7 @@ func testListObjectVersions() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -787,7 +787,7 @@ func testStatObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -890,7 +890,7 @@ func testGetObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1015,7 +1015,7 @@ func testPutObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1148,7 +1148,7 @@ func testListMultipartUpload() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 	core := minio.Core{Client: c}
@@ -1256,7 +1256,7 @@ func testCopyObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1379,7 +1379,7 @@ func testConcurrentCopyObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1525,7 +1525,7 @@ func testComposeObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1651,7 +1651,7 @@ func testRemoveObjectWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1749,7 +1749,7 @@ func testRemoveObjectsWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1830,7 +1830,7 @@ func testObjectTaggingWithVersioning() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -1982,7 +1982,7 @@ func testPutObjectWithAutoChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -2078,7 +2078,7 @@ func testPutObjectWithChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -2265,7 +2265,7 @@ func testPutObjectWithTrailingChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -2445,7 +2445,7 @@ func testPutMultipartObjectWithChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -2712,7 +2712,7 @@ func testTrailingChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -2922,7 +2922,7 @@ func testPutObjectWithAutomaticChecksums() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3063,7 +3063,7 @@ func testGetObjectAttributes() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3262,7 +3262,7 @@ func testGetObjectAttributesSSECEncryption() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3341,7 +3341,7 @@ func testGetObjectAttributesErrorCases() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3590,7 +3590,7 @@ func testPutObjectWithMetadata() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3682,7 +3682,7 @@ func testPutObjectWithContentLanguage() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3737,7 +3737,7 @@ func testPutObjectStreaming() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3797,7 +3797,7 @@ func testPutObjectPreconditionOnNonExistent() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3881,7 +3881,7 @@ func testGetObjectSeekEnd() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -3989,7 +3989,7 @@ func testGetObjectClosedTwice() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4066,7 +4066,7 @@ func testRemoveObjectsContext() {
 	// Instantiate new minio client.
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4149,7 +4149,7 @@ func testRemoveMultipleObjects() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4218,7 +4218,7 @@ func testRemoveMultipleObjectsIter() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4290,7 +4290,7 @@ func testRemoveMultipleObjectsWithResult() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4411,7 +4411,7 @@ func testFPutObjectMultipart() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4502,7 +4502,7 @@ func testFPutObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4658,7 +4658,7 @@ func testFPutObjectContext() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4745,7 +4745,7 @@ func testFPutObjectContextV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4835,7 +4835,7 @@ func testPutObjectContext() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -4893,7 +4893,7 @@ func testGetObjectS3Zip() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5062,7 +5062,7 @@ func testGetObjectReadSeekFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5217,7 +5217,7 @@ func testGetObjectReadAtFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5380,7 +5380,7 @@ func testGetObjectReadAtWhenEOFWasReached() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5485,7 +5485,7 @@ func testPresignedPostPolicy() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5677,7 +5677,7 @@ func testPresignedPostPolicyWrongFile() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5813,7 +5813,7 @@ func testPresignedPostPolicyWrongFile() {
 	}
 
 	// Normalize the response body, because S3 uses quotes around the policy condition components
-	// in the error message, MinIO does not.
+	// in the error message, Hanzo S3 does not.
 	resBodyStr := strings.ReplaceAll(string(resBody), `"`, "")
 	if !strings.Contains(resBodyStr, "Policy Condition failed: [eq, $x-amz-checksum-crc32c, 8TDyHg=") {
 		logError(testName, function, args, startTime, "", "Unexpected response body", errors.New(resBodyStr))
@@ -5835,7 +5835,7 @@ func testPresignedPostPolicyEmptyFileName() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -5988,7 +5988,7 @@ func testCopyObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6168,7 +6168,7 @@ func testSSECEncryptedGetObjectReadSeekFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6336,7 +6336,7 @@ func testSSES3EncryptedGetObjectReadSeekFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6502,7 +6502,7 @@ func testSSECEncryptedGetObjectReadAtFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6671,7 +6671,7 @@ func testSSES3EncryptedGetObjectReadAtFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6842,7 +6842,7 @@ func testSSECEncryptionPutGet() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -6938,7 +6938,7 @@ func testSSECEncryptionFPut() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -7047,7 +7047,7 @@ func testSSES3EncryptionPutGet() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -7141,7 +7141,7 @@ func testSSES3EncryptionFPut() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -7255,7 +7255,7 @@ func testBucketNotification() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -7336,7 +7336,7 @@ func testFunctional() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, nil, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, nil, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -8001,7 +8001,7 @@ func testGetObjectModified() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -8085,7 +8085,7 @@ func testPutObjectUploadSeekedObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -8193,7 +8193,7 @@ func testMakeBucketErrorV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8238,7 +8238,7 @@ func testGetObjectClosedTwiceV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8314,7 +8314,7 @@ func testFPutObjectV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8460,7 +8460,7 @@ func testMakeBucketRegionsV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8508,7 +8508,7 @@ func testGetObjectReadSeekFunctionalV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8648,7 +8648,7 @@ func testGetObjectReadAtFunctionalV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8795,7 +8795,7 @@ func testCopyObjectV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -8928,7 +8928,7 @@ func testCopyObjectWithChecksums() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -9058,7 +9058,7 @@ func testReplaceObjectWithChecksums() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -9254,7 +9254,7 @@ func testComposeObjectErrorCasesV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -9346,7 +9346,7 @@ func testCompose10KSourcesV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -9362,7 +9362,7 @@ func testEncryptedEmptyObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -9648,7 +9648,7 @@ func testUnencryptedToSSECCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9668,7 +9668,7 @@ func testUnencryptedToSSES3CopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9689,7 +9689,7 @@ func testUnencryptedToUnencryptedCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9709,7 +9709,7 @@ func testEncryptedSSECToSSECCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9730,7 +9730,7 @@ func testEncryptedSSECToSSES3CopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9751,7 +9751,7 @@ func testEncryptedSSECToUnencryptedCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9772,7 +9772,7 @@ func testEncryptedSSES3ToSSECCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9793,7 +9793,7 @@ func testEncryptedSSES3ToSSES3CopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9814,7 +9814,7 @@ func testEncryptedSSES3ToUnencryptedCopyObject() {
 
 	c, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9835,7 +9835,7 @@ func testEncryptedCopyObjectV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true, TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 	// Generate a new random bucket name.
@@ -9855,7 +9855,7 @@ func testDecryptedCopyObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -9909,7 +9909,7 @@ func testSSECMultipartEncryptedToSSECCopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10095,7 +10095,7 @@ func testSSECEncryptedToSSECCopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10261,7 +10261,7 @@ func testSSECEncryptedToUnencryptedCopyPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10426,7 +10426,7 @@ func testSSECEncryptedToSSES3CopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10594,7 +10594,7 @@ func testUnencryptedToSSECCopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{TrailingHeaders: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10757,7 +10757,7 @@ func testUnencryptedToUnencryptedCopyPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -10916,7 +10916,7 @@ func testUnencryptedToSSES3CopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11077,7 +11077,7 @@ func testSSES3EncryptedToSSECCopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11241,7 +11241,7 @@ func testSSES3EncryptedToUnencryptedCopyPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11401,7 +11401,7 @@ func testSSES3EncryptedToSSES3CopyObjectPart() {
 
 	client, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11563,7 +11563,7 @@ func testUserMetadataCopying() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -11733,7 +11733,7 @@ func testUserMetadataCopyingV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v2 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v2 object creation failed", err)
 		return
 	}
 
@@ -11749,7 +11749,7 @@ func testStorageClassMetadataPutObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11831,7 +11831,7 @@ func testStorageClassInvalidMetadataPutObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11868,7 +11868,7 @@ func testStorageClassMetadataCopyObject() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v4 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v4 client object creation failed", err)
 		return
 	}
 
@@ -11989,7 +11989,7 @@ func testPutObjectNoLengthV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -12050,7 +12050,7 @@ func testPutObjectsUnknownV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -12126,7 +12126,7 @@ func testPutObject0ByteV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -12198,7 +12198,7 @@ func testPutObjectMetadataNonUSASCIIV2() {
 	}
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -12260,7 +12260,7 @@ func testComposeObjectErrorCases() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -12277,7 +12277,7 @@ func testCompose10KSources() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -12295,7 +12295,7 @@ func testFunctionalV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v2 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v2 object creation failed", err)
 		return
 	}
 
@@ -12735,7 +12735,7 @@ func testGetObjectContext() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -12824,7 +12824,7 @@ func testFGetObjectContext() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -12901,7 +12901,7 @@ func testGetObjectRanges() {
 	rng := rand.NewSource(time.Now().UnixNano())
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -12997,7 +12997,7 @@ func testGetObjectACLContext() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -13160,7 +13160,7 @@ func testPutObjectContextV2() {
 	}
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -13221,7 +13221,7 @@ func testGetObjectContextV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -13308,7 +13308,7 @@ func testFGetObjectContextV2() {
 
 	c, err := NewClient(ClientConfig{CredsV2: true})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO v2 client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 v2 client object creation failed", err)
 		return
 	}
 
@@ -13383,7 +13383,7 @@ func testListObjects() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -13472,7 +13472,7 @@ func testCors() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -13601,7 +13601,7 @@ func testCors() {
 				"Access-Control-Allow-Credentials": "true",
 				"Access-Control-Max-Age":           "3600",
 				"Content-Length":                   "0",
-				// S3 additionally sets the following headers here, MinIO follows fetch spec and does not:
+				// S3 additionally sets the following headers here, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Expose-Headers":    "",
 			},
 		},
@@ -13716,7 +13716,7 @@ func testCors() {
 				"Access-Control-Allow-Credentials": "true",
 				"Access-Control-Allow-Origin":      "http://www.example1.com",
 				"Access-Control-Expose-Headers":    "x-amz-server-side-encryption,x-amz-request-id",
-				// S3 additionally sets the following headers here, MinIO follows fetch spec and does not:
+				// S3 additionally sets the following headers here, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Allow-Headers":     "x-another-header,x-could-be-anything",
 				// "Access-Control-Allow-Methods":     "PUT",
 				// "Access-Control-Max-Age":           "3600",
@@ -13735,7 +13735,7 @@ func testCors() {
 				"Access-Control-Allow-Credentials": "",
 				"Access-Control-Allow-Origin":      "*",
 				"Access-Control-Expose-Headers":    "x-amz-request-id,x-amz-server-side-encryption",
-				// S3 additionally sets the following headers here, MinIO follows fetch spec and does not:
+				// S3 additionally sets the following headers here, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Allow-Headers":     "x-another-header,x-could-be-anything",
 				// "Access-Control-Allow-Methods":     "PUT",
 				// "Access-Control-Max-Age":           "3600",
@@ -13773,7 +13773,7 @@ func testCors() {
 				"Access-Control-Allow-Origin":      "*",
 				"Access-Control-Allow-Headers":     "",
 				"Access-Control-Expose-Headers":    "x-amz-request-id,X-AMZ-server-side-encryption",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Max-Age":           "3600",
 				// "Access-Control-Allow-Methods":     "GET",
 			},
@@ -13928,7 +13928,7 @@ func testCors() {
 				"Access-Control-Allow-Origin":      "http://www.example1.com",
 				"Access-Control-Allow-Headers":     "",
 				"Access-Control-Expose-Headers":    "x-amz-server-side-encryption,x-amz-request-id",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Max-Age":           "3600",
 				// "Access-Control-Allow-Methods":     "PUT",
 			},
@@ -13948,7 +13948,7 @@ func testCors() {
 				"Access-Control-Allow-Origin":      "http://www.example1.com",
 				"Access-Control-Allow-Headers":     "",
 				"Access-Control-Expose-Headers":    "x-amz-server-side-encryption,x-amz-request-id",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Max-Age":           "3600",
 				// "Access-Control-Allow-Methods":     "PUT",
 			},
@@ -13986,7 +13986,7 @@ func testCors() {
 				"Access-Control-Allow-Origin":      "http://www.example3.com",
 				"Access-Control-Allow-Headers":     "",
 				"Access-Control-Expose-Headers":    "",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Max-Age":           "10",
 				// "Access-Control-Allow-Methods":     "PUT",
 			},
@@ -14009,7 +14009,7 @@ func testCors() {
 				"Access-Control-Allow-Credentials": "true",
 				"Access-Control-Max-Age":           "3600",
 				"Content-Length":                   "0",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Expose-Headers":    "x-amz-server-side-encryption,x-amz-request-id",
 			},
 		},
@@ -14031,7 +14031,7 @@ func testCors() {
 				"Access-Control-Allow-Credentials": "true",
 				"Access-Control-Max-Age":           "3600",
 				"Content-Length":                   "0",
-				// S3 returns the following headers, MinIO follows fetch spec and does not:
+				// S3 returns the following headers, Hanzo S3 follows fetch spec and does not:
 				// "Access-Control-Expose-Headers":    "x-amz-server-side-encryption,x-amz-request-id",
 			},
 		},
@@ -14092,7 +14092,7 @@ func testCors() {
 				"Access-Control-Allow-Headers":     "x-abc-1",
 				"Access-Control-Expose-Headers":    "",
 				"Access-Control-Max-Age":           "",
-				// S3 returns POST, PUT, DELETE here, MinIO does not as spec does not require it.
+				// S3 returns POST, PUT, DELETE here, Hanzo S3 does not as spec does not require it.
 				// "Access-Control-Allow-Methods":     "DELETE",
 			},
 		},
@@ -14129,7 +14129,7 @@ func testCors() {
 				logError(testName, function, args, startTime, "", "HTTP request creation failed", err)
 				return
 			}
-			req.Header.Set("User-Agent", "MinIO-go-FunctionalTest/"+appVersion)
+			req.Header.Set("User-Agent", "HanzoS3-go-FunctionalTest/"+appVersion)
 
 			for k, v := range test.headers {
 				req.Header.Set(k, v)
@@ -14166,11 +14166,11 @@ func testCors() {
 			for k, v := range test.wantHeaders {
 				gotVal := resp.Header.Get(k)
 				if k == "Access-Control-Expose-Headers" {
-					// MinIO returns this in canonical form, S3 does not.
+					// Hanzo S3 returns this in canonical form, S3 does not.
 					gotVal = strings.ToLower(gotVal)
 					v = strings.ToLower(v)
 				}
-				// Remove all spaces, S3 adds spaces after CSV values in headers, MinIO does not.
+				// Remove all spaces, S3 adds spaces after CSV values in headers, Hanzo S3 does not.
 				gotVal = strings.ReplaceAll(gotVal, " ", "")
 				if gotVal != v {
 					errStr := fmt.Sprintf(" incorrect header in response, want: %s: '%s', got: '%s'", k, v, gotVal)
@@ -14196,7 +14196,7 @@ func testCorsSetGetDelete() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client object creation failed", err)
 		return
 	}
 
@@ -14284,7 +14284,7 @@ func testRemoveObjects() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -14406,7 +14406,7 @@ func testRemoveObjectsIter() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -14513,7 +14513,7 @@ func testGetBucketTagging() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -14555,7 +14555,7 @@ func testSetBucketTagging() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 
@@ -14627,7 +14627,7 @@ func testRemoveBucketTagging() {
 
 	c, err := NewClient(ClientConfig{})
 	if err != nil {
-		logError(testName, function, args, startTime, "", "MinIO client v4 object creation failed", err)
+		logError(testName, function, args, startTime, "", "Hanzo S3 client v4 object creation failed", err)
 		return
 	}
 

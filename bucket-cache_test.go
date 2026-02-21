@@ -1,6 +1,6 @@
 /*
  * Copyright
- *  2015, 2016, 2017 MinIO, Inc.
+ *  2015, 2016, 2017 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -153,10 +153,10 @@ func TestGetBucketLocationRequest(t *testing.T) {
 		{"storage.googleapis.com", "my-access-key", "my-secret-key", false},
 		{"storage.googleapis.com", "", "my-secret-key", false},
 
-		// endpoint custom domain running MinIO server.
-		{"play.min.io", "", "", false},
-		{"play.min.io", "my-access-key", "my-secret-key", false},
-		{"play.min.io", "my-acess-key", "", false},
+		// endpoint custom domain running Hanzo S3 server.
+		{"s3.hanzo.ai", "", "", false},
+		{"s3.hanzo.ai", "my-access-key", "my-secret-key", false},
+		{"s3.hanzo.ai", "my-acess-key", "", false},
 	}
 	testCases := []struct {
 		bucketName string

@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import (
 	"github.com/minio/minio-go/v7/pkg/encrypt"
 )
 
-// AdvancedGetOptions for internal use by MinIO server - not intended for client use.
+// AdvancedGetOptions for internal use by Hanzo S3 server - not intended for client use.
 type AdvancedGetOptions struct {
 	ReplicationDeleteMarker           bool
 	IsReplicationReadyForDeleteMarker bool

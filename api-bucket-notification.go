@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2017-2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2017-2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,12 +119,12 @@ func processBucketNotificationResponse(bucketName string, resp *http.Response) (
 	return bucketNotification, nil
 }
 
-// ListenNotification listen for all events, this is a MinIO specific API
+// ListenNotification listen for all events, this is a Hanzo S3 specific API
 func (c *Client) ListenNotification(ctx context.Context, prefix, suffix string, events []string) <-chan notification.Info {
 	return c.ListenBucketNotification(ctx, "", prefix, suffix, events)
 }
 
-// ListenBucketNotification listen for bucket events, this is a MinIO specific API
+// ListenBucketNotification listen for bucket events, this is a Hanzo S3 specific API
 func (c *Client) ListenBucketNotification(ctx context.Context, bucketName, prefix, suffix string, events []string) <-chan notification.Info {
 	notificationInfoCh := make(chan notification.Info, 1)
 	const notificationCapacity = 4 * 1024 * 1024

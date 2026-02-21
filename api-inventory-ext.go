@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2025 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2025 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import (
 	"github.com/minio/minio-go/v7/pkg/s3utils"
 )
 
-// This file contains the inventory API extension for MinIO server. It is not
+// This file contains the inventory API extension for Hanzo S3 server. It is not
 // compatible with AWS S3.
 
 func makeInventoryReqMetadata(bucket string, urlParams ...string) requestMetadata {
@@ -50,7 +50,7 @@ func makeInventoryReqMetadata(bucket string, urlParams ...string) requestMetadat
 }
 
 // GenerateInventoryConfigYAML generates a YAML template for an inventory configuration.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -89,7 +89,7 @@ type inventoryPutConfigOpts struct{}
 type InventoryPutConfigOption func(*inventoryPutConfigOpts)
 
 // PutBucketInventoryConfiguration creates or updates an inventory configuration for a bucket.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -125,7 +125,7 @@ func (c *Client) PutBucketInventoryConfiguration(ctx context.Context, bucket str
 }
 
 // GetBucketInventoryConfiguration retrieves the inventory configuration for a bucket.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -159,7 +159,7 @@ func (c *Client) GetBucketInventoryConfiguration(ctx context.Context, bucket, id
 }
 
 // DeleteBucketInventoryConfiguration deletes an inventory configuration from a bucket.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -202,7 +202,7 @@ type InventoryListResult struct {
 }
 
 // ListBucketInventoryConfigurations lists up to 100 inventory configurations for a bucket.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -233,7 +233,7 @@ func (c *Client) ListBucketInventoryConfigurations(ctx context.Context, bucket, 
 }
 
 // ListBucketInventoryConfigurationsIterator returns an iterator that lists all inventory configurations
-// for a bucket. This is a MinIO-specific API and is not compatible with AWS S3.
+// for a bucket. This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout
@@ -298,7 +298,7 @@ type InventoryJobStatus struct {
 }
 
 // GetBucketInventoryJobStatus retrieves the status of an inventory job for a bucket.
-// This is a MinIO-specific API and is not compatible with AWS S3.
+// This is a Hanzo S3-specific API and is not compatible with AWS S3.
 //
 // Parameters:
 //   - ctx: Context for request cancellation and timeout

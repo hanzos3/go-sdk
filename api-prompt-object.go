@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2024 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2024 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import (
 
 // PromptObject performs language model inference with the prompt and referenced object as context.
 // Inference is performed using a Lambda handler that can process the prompt and object.
-// Currently, this functionality is limited to certain MinIO servers.
+// Currently, this functionality is limited to certain Hanzo S3 servers.
 func (c *Client) PromptObject(ctx context.Context, bucketName, objectName, prompt string, opts PromptObjectOptions) (io.ReadCloser, error) {
 	// Input validation.
 	if err := s3utils.CheckValidBucketName(bucketName); err != nil {

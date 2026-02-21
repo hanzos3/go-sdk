@@ -2,8 +2,8 @@
 // +build example
 
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2019 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2019 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ func main() {
 
 	// New returns an Amazon S3 compatible client object. API compatibility (v2 or v4) is automatically
 	// determined based on the Endpoint value.
-	s3Client, err := minio.New("play.min.io", &minio.Options{
+	s3Client, err := minio.New("s3.hanzo.ai", &minio.Options{
 		Creds:  credentials.NewStaticV4("YOUR-ACCESSKEYID", "YOUR-SECRETACCESSKEY", ""),
 		Secure: true,
 	})

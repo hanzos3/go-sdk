@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2017 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2017 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ func (r ReplicationStatus) Empty() bool {
 }
 
 // AdvancedPutOptions for internal use - to be utilized by replication, ILM transition
-// implementation on MinIO server
+// implementation on Hanzo S3 server
 type AdvancedPutOptions struct {
 	SourceVersionID          string
 	SourceETag               string
@@ -114,8 +114,8 @@ type PutObjectOptions struct {
 	customHeaders http.Header
 }
 
-// SetMatchETag if etag matches while PUT MinIO returns an error
-// this is a MinIO specific extension to support optimistic locking
+// SetMatchETag if etag matches while PUT Hanzo S3 returns an error
+// this is a Hanzo S3 specific extension to support optimistic locking
 // semantics.
 func (opts *PutObjectOptions) SetMatchETag(etag string) {
 	if opts.customHeaders == nil {
@@ -128,8 +128,8 @@ func (opts *PutObjectOptions) SetMatchETag(etag string) {
 	}
 }
 
-// SetMatchETagExcept if etag does not match while PUT MinIO returns an
-// error this is a MinIO specific extension to support optimistic locking
+// SetMatchETagExcept if etag does not match while PUT Hanzo S3 returns an
+// error this is a Hanzo S3 specific extension to support optimistic locking
 // semantics.
 func (opts *PutObjectOptions) SetMatchETagExcept(etag string) {
 	if opts.customHeaders == nil {

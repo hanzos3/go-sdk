@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2015-2022 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2015-2022 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,15 +49,15 @@ type AssumeRoleWithCustomTokenResponse struct {
 }
 
 // CustomTokenIdentity - satisfies the Provider interface, and retrieves
-// credentials from MinIO using the AssumeRoleWithCustomToken STS API.
+// credentials from Hanzo S3 using the AssumeRoleWithCustomToken STS API.
 type CustomTokenIdentity struct {
 	Expiry
 
-	// Optional http Client to use when connecting to MinIO STS service.
+	// Optional http Client to use when connecting to Hanzo S3 STS service.
 	// (overrides default client in CredContext)
 	Client *http.Client
 
-	// MinIO server STS endpoint to fetch STS credentials.
+	// Hanzo S3 server STS endpoint to fetch STS credentials.
 	STSEndpoint string
 
 	// The custom token to use with the request.
@@ -146,7 +146,7 @@ func (c *CustomTokenIdentity) RetrieveWithCredContext(cc *CredContext) (value Va
 	}, nil
 }
 
-// Retrieve - to satisfy Provider interface; fetches credentials from MinIO.
+// Retrieve - to satisfy Provider interface; fetches credentials from Hanzo S3.
 func (c *CustomTokenIdentity) Retrieve() (value Value, err error) {
 	return c.RetrieveWithCredContext(nil)
 }

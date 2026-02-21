@@ -1,6 +1,6 @@
 /*
- * MinIO Go Library for Amazon S3 Compatible Cloud Storage
- * Copyright 2020 MinIO, Inc.
+ * Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+ * Copyright 2020 Hanzo AI, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ type PutObjectTaggingOptions struct {
 	Internal  AdvancedObjectTaggingOptions
 }
 
-// AdvancedObjectTaggingOptions for internal use by MinIO server - not intended for client use.
+// AdvancedObjectTaggingOptions for internal use by Hanzo S3 server - not intended for client use.
 type AdvancedObjectTaggingOptions struct {
 	ReplicationProxyRequest string
 }

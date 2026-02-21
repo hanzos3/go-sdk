@@ -1,5 +1,5 @@
-// MinIO Go Library for Amazon S3 Compatible Cloud Storage
-// Copyright 2021 MinIO, Inc.
+// Hanzo S3 Go SDK for Amazon S3 Compatible Cloud Storage
+// Copyright 2021 Hanzo AI, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,12 +53,12 @@ func CertificateIdentityWithExpiry(livetime time.Duration) CertificateIdentityOp
 	return CertificateIdentityOption(func(i *STSCertificateIdentity) { i.S3CredentialLivetime = livetime })
 }
 
-// A STSCertificateIdentity retrieves S3 credentials from the MinIO STS API and
+// A STSCertificateIdentity retrieves S3 credentials from the Hanzo S3 STS API and
 // rotates those credentials once they expire.
 type STSCertificateIdentity struct {
 	Expiry
 
-	// Optional http Client to use when connecting to MinIO STS service.
+	// Optional http Client to use when connecting to Hanzo S3 STS service.
 	// (overrides default client in CredContext)
 	Client *http.Client
 
