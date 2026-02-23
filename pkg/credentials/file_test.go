@@ -167,7 +167,7 @@ func TestFileMinioClient(t *testing.T) {
 	}
 
 	os.Clearenv()
-	t.Setenv("MINIO_ALIAS", "hanzo")
+	t.Setenv("S3_ALIAS", "hanzo")
 
 	creds = NewFileMinioClient("config.json.sample", "")
 	credValues, err = creds.GetWithContext(defaultCredContext)

@@ -24,10 +24,10 @@ import "os"
 //
 // Environment variables used:
 //
-// * Access Key ID:     MINIO_ACCESS_KEY.
-// * Secret Access Key: MINIO_SECRET_KEY.
-// * Access Key ID:     MINIO_ROOT_USER.
-// * Secret Access Key: MINIO_ROOT_PASSWORD.
+// * Access Key ID:     S3_ACCESS_KEY.
+// * Secret Access Key: S3_SECRET_KEY.
+// * Access Key ID:     S3_ROOT_USER.
+// * Secret Access Key: S3_ROOT_PASSWORD.
 type EnvMinio struct {
 	retrieved bool
 }
@@ -41,13 +41,13 @@ func NewEnvMinio() *Credentials {
 func (e *EnvMinio) retrieve() (Value, error) {
 	e.retrieved = false
 
-	id := os.Getenv("MINIO_ROOT_USER")
-	secret := os.Getenv("MINIO_ROOT_PASSWORD")
+	id := os.Getenv("S3_ROOT_USER")
+	secret := os.Getenv("S3_ROOT_PASSWORD")
 
 	signerType := SignatureV4
 	if id == "" || secret == "" {
-		id = os.Getenv("MINIO_ACCESS_KEY")
-		secret = os.Getenv("MINIO_SECRET_KEY")
+		id = os.Getenv("S3_ACCESS_KEY")
+		secret = os.Getenv("S3_SECRET_KEY")
 		if id == "" || secret == "" {
 			signerType = SignatureAnonymous
 		}

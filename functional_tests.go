@@ -13457,7 +13457,7 @@ func testListObjects() {
 }
 
 // testCors is runnable against S3 itself.
-// Just provide the env var MINIO_GO_TEST_BUCKET_CORS with bucket that is public and WILL BE DELETED.
+// Just provide the env var S3_GO_TEST_BUCKET_CORS with bucket that is public and WILL BE DELETED.
 // Recreate this manually each time. Minio-go SDK does not support calling
 // SetPublicBucket (put-public-access-block) on S3, otherwise we could script the whole thing.
 func testCors() {
@@ -13477,7 +13477,7 @@ func testCors() {
 	}
 
 	// Create or reuse a bucket that will get cors settings applied to it and deleted when done
-	bucketName := os.Getenv("MINIO_GO_TEST_BUCKET_CORS")
+	bucketName := os.Getenv("S3_GO_TEST_BUCKET_CORS")
 	if bucketName == "" {
 		bucketName = randString(60, rand.NewSource(time.Now().UnixNano()), "minio-go-test-")
 		err = c.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{Region: "us-east-1"})

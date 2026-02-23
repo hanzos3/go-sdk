@@ -36,8 +36,8 @@ jobs:
           ACCESS_KEY: minioadmin
           SECRET_KEY: minioadmin
           ENABLE_HTTPS: 1
-          MINIO_KMS_MASTER_KEY: my-minio-key:6368616e676520746869732070617373776f726420746f206120736563726574
-          MINIO_CI_CD: true
+          S3_KMS_MASTER_KEY: my-minio-key:6368616e676520746869732070617373776f726420746f206120736563726574
+          S3_CI_CD: true
           MINT_NO_FULL_OBJECT: true
         run: |
           New-Item -ItemType Directory -Path "$env:temp/certs-dir"

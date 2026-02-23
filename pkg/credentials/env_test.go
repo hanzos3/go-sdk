@@ -76,8 +76,8 @@ func TestEnvAWSRetrieve(t *testing.T) {
 func TestEnvMinioRetrieve(t *testing.T) {
 	os.Clearenv()
 
-	t.Setenv("MINIO_ACCESS_KEY", "access")
-	t.Setenv("MINIO_SECRET_KEY", "secret")
+	t.Setenv("S3_ACCESS_KEY", "access")
+	t.Setenv("S3_SECRET_KEY", "secret")
 
 	e := EnvMinio{}
 	if !e.IsExpired() {

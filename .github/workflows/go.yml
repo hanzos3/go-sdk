@@ -36,9 +36,9 @@ jobs:
           ACCESS_KEY: minioadmin
           SECRET_KEY: minioadmin
           ENABLE_HTTPS: 1
-          MINIO_KMS_SECRET_KEY: my-minio-key:OSMM+vkKUTCvQs9YL/CVMIMt43HFhkUpqJxTmGl6rYw=
+          S3_KMS_SECRET_KEY: my-minio-key:OSMM+vkKUTCvQs9YL/CVMIMt43HFhkUpqJxTmGl6rYw=
           SSL_CERT_FILE: /tmp/certs-dir/public.crt
-          MINIO_CI_CD: true
+          S3_CI_CD: true
           MINT_NO_FULL_OBJECT: true
         run: |
           sudo apt update -y

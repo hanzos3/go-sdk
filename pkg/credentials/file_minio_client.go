@@ -31,14 +31,14 @@ import (
 type FileMinioClient struct {
 	// Path to the shared credentials file.
 	//
-	// If empty will look for "MINIO_SHARED_CREDENTIALS_FILE" env variable. If the
+	// If empty will look for "S3_SHARED_CREDENTIALS_FILE" env variable. If the
 	// env value is empty will default to current user's home directory.
 	// Linux/OSX: "$HOME/.mc/config.json"
 	// Windows:   "%USERALIAS%\mc\config.json"
 	Filename string
 
 	// Hanzo S3 Alias to extract credentials from the shared credentials file. If empty
-	// will default to environment variable "MINIO_ALIAS" or "s3" if
+	// will default to environment variable "S3_ALIAS" or "s3" if
 	// environment variable is also not set.
 	Alias string
 
@@ -57,7 +57,7 @@ func NewFileMinioClient(filename, alias string) *Credentials {
 
 func (p *FileMinioClient) retrieve() (Value, error) {
 	if p.Filename == "" {
-		if value, ok := os.LookupEnv("MINIO_SHARED_CREDENTIALS_FILE"); ok {
+		if value, ok := os.LookupEnv("S3_SHARED_CREDENTIALS_FILE"); ok {
 			p.Filename = value
 		} else {
 			homeDir, err := os.UserHomeDir()
@@ -72,7 +72,7 @@ func (p *FileMinioClient) retrieve() (Value, error) {
 	}
 
 	if p.Alias == "" {
-		p.Alias = os.Getenv("MINIO_ALIAS")
+		p.Alias = os.Getenv("S3_ALIAS")
 		if p.Alias == "" {
 			p.Alias = "s3"
 		}
