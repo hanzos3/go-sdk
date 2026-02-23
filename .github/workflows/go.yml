@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install devscripts -y
-          wget -O /tmp/minio https://dl.minio.io/server/minio/release/linux-amd64/minio
+          wget -O /tmp/minio https://github.com/hanzoai/s3/releases/latest/download/s3-linux-amd64
           chmod +x /tmp/minio
           mkdir -p /tmp/certs-dir
           cp testcerts/* /tmp/certs-dir
